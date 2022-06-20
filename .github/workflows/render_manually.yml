@@ -25,6 +25,9 @@ jobs:
     steps:
     - name: Install Blender
       run: sudo apt install blender
+      
+    - name: Install Blender
+      run: wget ${{ github.event.inputs.file }}
     
     - uses: actions/checkout@v2
       with:
@@ -34,7 +37,7 @@ jobs:
       run: mkdir render
       
     - name: Render
-      run: blender -b ${{ github.event.inputs.file }}.blend -o //render/frame- -x 1 -E CYCLES -f ${{ github.event.inputs.frame }} -F PNG
+      run: blender -b ${{ github.event.inputs.file }}.blend -o //render/frame- -x 1 -E CYCLES -s  ${{ github.event.inputs.start_frame }} -e ${{ github.event.inputs.end_frame }} -a -F PNG
       
     - name: Upload output file
       uses: actions/upload-artifact@v2
