@@ -35,7 +35,7 @@ jobs:
       run: sudo apt install blender
       
     - name: Install Blender
-      run: wget ${{ github.event.inputs.file }}
+      run: wget ${{ github.event.inputs.project }}
     
     - uses: actions/checkout@v2
       with:
