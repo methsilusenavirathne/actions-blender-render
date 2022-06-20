@@ -12,11 +12,11 @@ on:
         description: 'The file to render'
         required: true
       start_frame:
-        description: 'Frame to render'
+        description: 'Start Frame to render'
         default: 1
         required: false
       end_frame:
-        description: 'Frame to render'
+        description: 'End Frame to render'
         default: 1
         required: false
       project:
