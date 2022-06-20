@@ -11,10 +11,18 @@ on:
       file:
         description: 'The file to render'
         required: true
-      frame:
+      start_frame:
         description: 'Frame to render'
         default: 1
         required: false
+      end_frame:
+        description: 'Frame to render'
+        default: 1
+        required: false
+      project:
+        description: 'project download'
+        default: 1
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
