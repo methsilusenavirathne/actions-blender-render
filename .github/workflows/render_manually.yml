@@ -31,18 +31,34 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+    
+    - name: Folder Check
+      run: ls
+      
     - name: Install Blender
       run: sudo apt install blender
       
+    - name: Folder Check
+      run: ls
+      
     - name: Install Blender
       run: wget ${{ github.event.inputs.project }}
+      
+    - name: Folder Check
+      run: ls
     
     - uses: actions/checkout@v2
       with:
         lfs: true
         
+    - name: Folder Check
+      run: ls
+        
     - name: Create render directory
       run: mkdir render
+      
+    - name: Folder Check
+      run: ls
       
     - name: Render
       run: blender -b ${{ github.event.inputs.file }}.blend -o //render/frame- -x 1 -E CYCLES -s  ${{ github.event.inputs.start_frame }} -e ${{ github.event.inputs.end_frame }} -a -F PNG
