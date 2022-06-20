@@ -36,7 +36,7 @@ jobs:
       run: ls
       
     - name: Install Blender
-      run: sudo apt install blender
+      run: sudo snap install blender --classic
       
     - name: Folder Check
       run: ls
