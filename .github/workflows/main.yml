@@ -1,0 +1,102 @@
+# This is a basic workflow that is manually triggered
+
+name: Render Manually
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      file:
+        description: 'The file to render'
+        required: true
+      start_frame:
+        description: 'Start Frame to render'
+        required: false
+      end_frame:
+        description: 'End Frame to render'
+        required: false
+      project:
+        description: 'project download'
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  render:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Folder Check
+      run: ls
+      
+    - name: Install Blender
+      run: sudo snap install blender --classic
+      
+    - name: Folder Check
+      run: ls
+      
+    - name: Install Blender
+      run: wget ${{ github.event.inputs.project }}
+      
+    - name: Folder Check
+      run: ls
+        
+    - name: Folder Check
+      run: ls
+        
+    - name: Create render directory
+      run: mkdir render
+      
+    - name: Folder Check
+      run: ls
+      
+    - name: Render
+      run: blender -b ${{ github.event.inputs.file }}.blend -o //render/frame- -x 1 -E CYCLES -s  ${{ github.event.inputs.start_frame }} -e ${{ github.event.inputs.end_frame }} -a -F PNG
+      
+    - name: Upload output file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ github.event.inputs.file }}
+        path: render/*.png
+        
+  mp:
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Folder Check
+      run: ls
+      
+    - name: Install Blender
+      run: sudo snap install blender --classic
+      
+    - name: Folder Check
+      run: ls
+      
+    - name: Install Blender
+      run: wget ${{ github.event.inputs.project }}
+      
+    - name: Folder Check
+      run: ls
+        
+    - name: Folder Check
+      run: ls
+        
+    - name: Create render directory
+      run: mkdir render
+      
+    - name: Folder Check
+      run: ls
+      
+    - name: Render
+      run: blender -b ${{ github.event.inputs.file }}.blend -o //render/frame- -x 1 -E CYCLES -s  316 -e 317 -a -F PNG
+      
+    - name: Upload output file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ github.event.inputs.file }}
+        path: render/*.png
